@@ -12,6 +12,7 @@ function App() {
   const [lng, setLng] = useState(36.82);
   const [lat, setLat] = useState(-1.29);
   const [zoom, setZoom] = useState(11.5);
+  const measurementsRef = useRef([]);
 
   useEffect(() => {
     const DEVICE_ID = '641b3069572090002992a7a1';
@@ -22,7 +23,7 @@ function App() {
       )
       .then((res) => {
         if (res.data.success) {
-          const sortedData = res.data.measurements.map((item) => ({
+          const measurements = res.data.measurements.map((item) => ({
             device: item.device,
             time: item.time,
             pm2_5: item.pm2_5.value,
@@ -35,6 +36,7 @@ function App() {
             aqi_category: item.aqi_category,
             aqi_color_name: item.aqi_color_name,
           }));
+          measurementsRef.current = measurements;
         }
       })
       .catch((error) => {
@@ -48,8 +50,16 @@ function App() {
       center: [lng, lat],
       zoom: zoom,
     });
-  });
 
+    measurementsRef.current.forEach((measurement) => {
+      const marker = new mapboxgl.Marker()
+        .setLngLat([
+          measurement.siteDetails.approximate_longitude,
+          measurement.siteDetails.approximate_latitude,
+        ])
+        .addTo(map.current);
+    });
+  }, [lng, lat, zoom]);
   return (
     <div>
       <div ref={mapContainer} className="map-container" />
