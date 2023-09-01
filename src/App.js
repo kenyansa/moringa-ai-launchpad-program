@@ -15,16 +15,15 @@ function App() {
   const measurementsRef = useRef([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  const markerColors = {
-    Green: "Green",
-    Yellow: "#F4F432", // a less bright yellow
-    Orange: "Orange",
-    Red: "Red",
-    Purple: "Purple",
-    Maroon: "Maroon",
-  };
-
   useEffect(() => {
+    const markerColors = {
+      Green: "#4FCA57",
+      Yellow: "#F4F432", // a less bright yellow
+      Orange: "Orange",
+      Red: "Red",
+      Purple: "Purple",
+      Maroon: "Maroon",
+    };
     const DEVICE_ID = "641b3069572090002992a7a1";
     const TOKEN = "8VYUFBK2T4ZHK623";
     axios
@@ -90,11 +89,18 @@ function App() {
             const popup = new mapboxgl.Popup().setHTML(
               // Set the popup's content
               `
-                <h3>${measurement.siteDetails.formatted_name}</h3>
-                <p>Time: ${timeAgo}</p>
-                <p>PM2.5: ${measurement.pm2_5}</p>
-                <p>AQI Category: ${measurement.aqi_category}</p>
-              `
+              <h3>${measurement.siteDetails.formatted_name}</h3>
+              <p class="last-refreshed">Last Refreshed : ${timeAgo}</p>
+              <div style = "background-color : ${markerColor}; padding:12px; font-size:large; color: #333;">
+                <span class="pm25-label">PM<sub>2.5</sub> : </span>
+                <span class="pm25-value">${measurement.pm2_5.toFixed(
+                  4
+                )} </span> µg/m3
+              </div>
+              <p class="pm25-value">AQI Category: ${
+                measurement.aqi_category
+              }</p>
+            `
             );
 
             marker.setPopup(popup);
@@ -111,10 +117,13 @@ function App() {
       .catch((error) => {
         console.log("Error fetching data", error);
       });
-  }, [lng, lat, zoom, selectedMarker, markerColors]);
+  }, [lng, lat, zoom, selectedMarker]);
 
   return (
     <div>
+      <div className="sidebar">
+        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      </div>
       <div ref={mapContainer} className="map-container" />
     </div>
   );
