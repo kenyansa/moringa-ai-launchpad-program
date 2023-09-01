@@ -55,6 +55,12 @@ function App() {
             zoom: zoom,
           });
 
+          // Add the navigation control to the map's bottom right corner
+          map.current.addControl(
+            new mapboxgl.NavigationControl({ showCompass: false }),
+            "bottom-right"
+          );
+
           measurementsRef.current.forEach((measurement) => {
             const markerColor =
               markerColors[measurement.aqi_color_name] || "blue"; // Default to blue if color is not found
@@ -85,6 +91,9 @@ function App() {
                 : `${minutesAgo} ${
                     minutesAgo === 1 ? "minute" : "minutes"
                   } ago`;
+
+            let lastRefreshed = document.getElementById("last-refreshed");
+            lastRefreshed.innerHTML = measurementTime.toLocaleTimeString(); // Display the last refreshed time in legend
 
             const popup = new mapboxgl.Popup().setHTML(
               // Set the popup's content
@@ -185,7 +194,9 @@ function App() {
           </div>
         </div>
         <div className="refresh-time">
-          <span>Last Refreshed: </span>
+          <span>
+            Last Refreshed : <span id="last-refreshed"></span>{" "}
+          </span>
         </div>
       </div>
     </div>
