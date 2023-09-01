@@ -1,0 +1,21 @@
+.header {
+    background-color: #013d1e;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    height: 3rem;
+    margin: 0 auto; 
+  }
+  
+  .logo {
+    margin-right: auto;
+    padding:0px 0px 4px 10px;
+  }
+
+  .title{
+    margin: auto;
+  }
+
+  .sponsor{
+    margin-left: auto;
+  }

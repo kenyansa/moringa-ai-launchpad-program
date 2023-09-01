@@ -14,14 +14,14 @@ code {
 
 
 .sidebar {
-  background-color: rgba(35, 55, 75, 0.9);
+  background-color: rgba(35, 55, 75, 0.8);
   color: #ffffff; 
   padding: 0.375rem 0.75rem;
   font-family: monospace;
   z-index: 1;
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 1rem;
+  right: 1.875rem;
   margin: 0.75rem;
   border-radius: 0.25rem;
   }
@@ -34,32 +34,35 @@ code {
 
 .last-refreshed {
   font-weight: bold;
-  color: #333; /* Text color for "Last Refreshed" */
+  color: #333;
 }
 
 
 .pm25-label {
   font-weight: bold;
   margin-right: 0.313rem;
-  color: #333; /* Text color for PM2.5 label */
+  color: #333; 
 }
 
 .pm25-value {
   font-weight: bold;
-  color: #333; /* Text color for PM2.5 value */
+  color: #333;
 }
 
-
-/* CSS for the legend and last refreshed time */
 .legend-container {
   position: absolute;
   bottom: 1.875rem;
   left: 1.875rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color:  rgba(228, 231, 236);
   border-radius: 0.313rem;
   padding: 0.625rem;
   z-index: 1;
 }
+
+.mapboxgl-popup-content{
+  background-color:  rgba(228, 231, 236, 0.9) !important;
+}
+
 
 .legend {
   display: flex;
