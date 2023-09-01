@@ -13,6 +13,7 @@ function App() {
   const [lat, setLat] = useState(-1.29);
   const [zoom, setZoom] = useState(11.5);
   const measurementsRef = useRef([]);
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
   useEffect(() => {
     const DEVICE_ID = '641b3069572090002992a7a1';
@@ -37,29 +38,48 @@ function App() {
             aqi_color_name: item.aqi_color_name,
           }));
           measurementsRef.current = measurements;
+
+          if (map.current) return;
+          map.current = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [lng, lat],
+            zoom: zoom,
+          });
+
+          measurementsRef.current.forEach((measurement) => {
+            const marker = new mapboxgl.Marker()
+              .setLngLat([
+                measurement.siteDetails.approximate_longitude,
+                measurement.siteDetails.approximate_latitude,
+              ])
+              .addTo(map.current);
+
+            const popup = new mapboxgl.Popup().setHTML(
+              `
+                <h3>${measurement.siteDetails.formatted_name}</h3>
+                <p>Time: ${measurement.time}</p>
+                <p>PM2.5: ${measurement.pm2_5}</p>
+                <p>AQI Category: ${measurement.aqi_category}</p>
+                <p>AQI Color Name: ${measurement.aqi_color_name}</p>
+              `
+            );
+            marker.setPopup(popup);
+            marker.getElement().addEventListener('click', () => {
+              popup.addTo(map.current);
+              if (selectedMarker) {
+                selectedMarker.getPopup().remove();
+              }
+              setSelectedMarker(marker);
+            });
+          });
         }
       })
       .catch((error) => {
         console.log('Error fetching data', error);
       });
+  }, [lng, lat, zoom, selectedMarker]);
 
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [lng, lat],
-      zoom: zoom,
-    });
-
-    measurementsRef.current.forEach((measurement) => {
-      const marker = new mapboxgl.Marker()
-        .setLngLat([
-          measurement.siteDetails.approximate_longitude,
-          measurement.siteDetails.approximate_latitude,
-        ])
-        .addTo(map.current);
-    });
-  }, [lng, lat, zoom]);
   return (
     <div>
       <div ref={mapContainer} className="map-container" />
