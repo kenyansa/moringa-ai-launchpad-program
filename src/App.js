@@ -19,9 +19,9 @@ function App() {
     const markerColors = {
       Green: "#4FCA57",
       Yellow: "#F4F432", // a less bright yellow
-      Orange: "Orange",
-      Red: "Red",
-      Purple: "Purple",
+      Orange: "#F59636",
+      Red: "#F53636",
+      Purple: "#B836F5",
       Maroon: "Maroon",
     };
     const DEVICE_ID = "641b3069572090002992a7a1";
@@ -125,8 +125,73 @@ function App() {
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
       <div ref={mapContainer} className="map-container" />
+
+      <div className="legend-container">
+        <h4 className="legend-title">AQI Legend</h4>
+        <div className="legend">
+          <div className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: "#4FCA57" }}
+            >
+              0 - 12
+            </span>
+            <span>: Good</span>
+          </div>
+          <div className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: "#F4F432" }}
+            >
+              12.1 - 35.4
+            </span>
+            <span>: Moderate</span>
+          </div>
+          <div className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: "#F59636" }}
+            >
+              35.5 - 55.4
+            </span>
+            <span>: Unhealthy for Sensitive Groups</span>
+          </div>
+          <div className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: "#F53636" }}
+            >
+              55.5 - 150.4
+            </span>
+            <span>: Unhealthy</span>
+          </div>
+          <div className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: "#B836F5" }}
+            >
+              150.5 - 250.4
+            </span>
+            <span>: Very Unhealthy</span>
+          </div>
+          <div className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: "#8C2424" }}
+            >
+              250.5 - 500.4
+            </span>
+            <span>: Hazardous</span>
+          </div>
+        </div>
+        <div className="refresh-time">
+          <span>Last Refreshed: </span>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default App;
+
+// Path: src/App.css

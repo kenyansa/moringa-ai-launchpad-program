@@ -48,3 +48,43 @@ code {
   font-weight: bold;
   color: #333; /* Text color for PM2.5 value */
 }
+
+
+/* CSS for the legend and last refreshed time */
+.legend-container {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.legend-title {
+  font-weight: bold;
+  margin-top: 2px;
+  text-align: center;
+}
+
+.legend-item {
+  margin-bottom: 6px;
+}
+
+
+.legend-color {
+  padding:4px;
+  margin:3px;
+  border-radius: 2px;
+}
+
+  .refresh-time {
+    margin-top: 10px;
+    font-size: 14px;
+  }
