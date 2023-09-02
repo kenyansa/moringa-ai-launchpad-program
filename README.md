@@ -8,7 +8,6 @@ This is a web app showing the air quality of different points in Nairobi using d
 
 [Mapbox](https://www.mapbox.com/), which is a provider of custom online maps for websites and applications, was used as the map for this web application.
 
-The live demo can be accessed [here](https://airqo-nbo.vercel.app/)
 
 ## Installation.
 
