@@ -1,5 +1,5 @@
 
- <h1 align="center"> AirQo Nairobi Map </h1>
+ <h1 align="center"> Nairobi Air Quality </h1>
 
 
 ## Description.
