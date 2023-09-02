@@ -28,8 +28,3 @@ $ npm i
 ```bash 
 $ npm run start
 ``` 
-    
-## Screenshot.
-
-
-![image](https://github.com/Jesse-Bett/foodmine/assets/40341693/9d514b5b-3a60-46bf-af38-ba073d425d54)
