@@ -4,8 +4,7 @@ import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-load
 import axios from "axios";
 import Header from "./Header";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiaHVibG9zZWt1cm8iLCJhIjoiY2xsem0wdzNoMDAxYzNqczZ3eWkwdnlyNyJ9._f-vlL_y1Zc8wAlWDqL06Q";
+mapboxgl.accessToken = process.env.ACCESS_TOKEN;
 
 function App() {
   const mapContainer = useRef(null);
