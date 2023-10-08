@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* Responsive styles for tablet devices */
+@media (max-width: 950px) {
+  .sidebar{
+    font-size: medium;
+    width: 40vw;
+  }
+
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 576px) {
+  .sidebar{
+    display: none;
+  }
+}
+

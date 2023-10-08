@@ -1,21 +1,85 @@
+/* Default styles for header */
 .header {
-    background-color: #013d1e;
-    color: #fff;
-    padding: 10px;
+  background-color: #013d1e;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  margin: 0 auto;
+}
+
+.header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.logo {
+  margin-right: 10px;
+  padding: 0px 0px 4px 10px;
+  height: 3rem;
+}
+
+.title {
+  margin: 0;
+}
+
+.sponsor {
+  margin-left: auto;
+}
+
+#localetime {
+  margin-left: 25%;
+}
+
+#airqo {
+  margin-left: 35%;
+}
+
+/* Responsive styles for edge devices such as nest hub*/
+
+@media (max-width: 1300px) {
+  .header {
+    padding: 5px;
     display: flex;
-    height: 3rem;
-    margin: 0 auto; 
+    align-items: center;
+    font-size: small;
+    height: 4rem;
+    margin: 0 auto;
+
   }
-  
+}
+
+/* Responsive styles for tablet devices */
+@media (max-width: 950px) {
+  .header {
+    flex-direction: column; /* Stack elements vertically */
+    text-align: center; /* Center align text */
+    height: auto; /* Allow header to expand based on content */
+    font-size: small;
+  }
+
   .logo {
-    margin-right: auto;
-    padding:0px 0px 4px 10px;
+    margin-right: 0;
+    margin-bottom: 10px; /* Add space between logo and title */
   }
 
-  .title{
-    margin: auto;
+  .title {
+    margin: 4px;
   }
 
-  .sponsor{
-    margin-left: auto;
+  #localetime {
+    margin-left: 0;
   }
+
+  #airqo {
+    margin-left: 0;
+  }
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 576px) {
+  .header {
+    height: auto; /* Allow header to expand based on content */
+  }
+}
