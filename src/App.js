@@ -3,6 +3,7 @@ import "./App.css";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import axios from "axios";
 import Header from "./Header";
+import Legend from "./legend";
 
 mapboxgl.accessToken = process.env.ACCESS_TOKEN;
 
@@ -32,8 +33,6 @@ function App() {
       )
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data);
-
           const measurements = res.data.measurements.map((item) => ({
             device: item.device,
             time: item.time,
@@ -133,70 +132,7 @@ function App() {
       <Header />
       <div ref={mapContainer} className="map-container" />
 
-      <div className="legend-container">
-        <h4 className="legend-title">Air Quality Index Legend</h4>
-        <div className="legend">
-          <div className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: "#4FCA57" }}
-            >
-              0 - 12
-            </span>
-            <span>: Good</span>
-          </div>
-          <div className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: "#F4F432" }}
-            >
-              12.1 - 35.4
-            </span>
-            <span>: Moderate</span>
-          </div>
-          <div className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: "#F59636" }}
-            >
-              35.5 - 55.4
-            </span>
-            <span>: Unhealthy for Sensitive Groups</span>
-          </div>
-          <div className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: "#F53636" }}
-            >
-              55.5 - 150.4
-            </span>
-            <span>: Unhealthy</span>
-          </div>
-          <div className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: "#B836F5" }}
-            >
-              150.5 - 250.4
-            </span>
-            <span>: Very Unhealthy</span>
-          </div>
-          <div className="legend-item">
-            <span
-              className="legend-color"
-              style={{ backgroundColor: "#8C2424" }}
-            >
-              250.5 - 500.4
-            </span>
-            <span>: Hazardous</span>
-          </div>
-        </div>
-        <div className="refresh-time">
-          <span>
-            Last Refreshed : <span id="last-refreshed"></span>{" "}
-          </span>
-        </div>
-      </div>
+      <Legend />
     </div>
   );
 }
