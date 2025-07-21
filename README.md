@@ -26,7 +26,6 @@ A React-based web application that visualizes real-time air quality data using i
 ---
 
 ## 📦 Installation Instructions
-
 ### Prerequisites
 
 - Node.js (v14+ recommended)
@@ -34,24 +33,38 @@ A React-based web application that visualizes real-time air quality data using i
 - Mapbox Access Token
 - AirQo API Token and Device ID
 
-<!-- ### Clone the repository
-```bash
-git clone https://github.com/DerKip/air-nbo.git
-cd airqo -->
+- Clone the repository
+git clone https://github.com/your-username/airqo.git
+cd airqo
 
+Install dependencies
+
+npm install
+Set up environment variables
+Create a .env file at the root level and add:
+
+env
+REACT_APP_ACCESS_TOKEN=your_mapbox_access_token
+REACT_APP_DEVICE_ID=your_airqo_device_id
+REACT_APP_TOKEN=your_airqo_api_token
+Run the app locally
+bash
+
+npm start
+The app will be available at http://localhost:3000. 
 
 ### Code Overview and Structure
 src/
 ├── App.js          # Main component with map rendering logic
 ├── App.css
-├── Header.js       # Site header component
+├── Header.js       # Top site header
 ├── Header.css
-├── legend.js       # Legend with AQI categories and toggling
+├── legend.js       # Air quality index legend and toggle
 ├── legend.css
-├── assets/         # Folder for static assets (if any)
-├── index.js        # Entry point
+├── assets/         # For icons, images, etc.
+├── index.js        # React entry point
 ├── index.css
-└── App.test.js
+└── App.test.js     # Optional tests
 
 ### 🙌 Acknowledgments
 - AirQo API
